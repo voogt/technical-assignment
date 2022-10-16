@@ -1,0 +1,59 @@
+{% extends 'usergeo/base.html' %}
+
+{% block content %}
+
+<h2>Edit Profile</h2>
+<hr>
+<br>
+<h4>Edit Basic Info</h4>
+<form method="post" action="{% url 'usergeo:edit_basic' %}">
+    {% csrf_token %}
+    {% if form_basic.errors %}
+        <div class="alert alert-warning alert-dismissible fade show" alert="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h5>Your form has the following errors:</h5>
+            {% for field in form_basic %}
+                {% if field.errors %}
+                {{ field.errors }}
+                {% endif %}
+            {% endfor %}
+    </div>
+    {% endif %}
+
+    {{ form_basic.as_p }}
+
+    <div>
+        <a class="btn btn-secondary" href="{% url 'usergeo:change_password' %}">Change Password</a>
+    </div>
+    <br>
+    <input type="submit" value="Update" class="btn btn-secondary">
+</form>
+
+<hr>
+<br>
+<br>
+<h4>Edit Location Info</h4>
+<br>
+<form method="post" action="{% url 'usergeo:edit_info' %}">
+    {% csrf_token %}
+    {% if form_info.errors %}
+        <div class="alert alert-warning alert-dismissible fade show" alert="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h5>Your form has the following errors:</h5>
+            {% for field in form_info %}
+                {% if field.errors %}
+                {{ field.errors }}
+                {% endif %}
+            {% endfor %}
+    </div>
+    {% endif %}
+
+    {{ form_info.as_p }}
+    <input type="submit" value="Update" class="btn btn-secondary">
+</form>
+
+{% endblock %}
