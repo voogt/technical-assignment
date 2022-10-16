@@ -11,6 +11,7 @@ from .models import User_Info
 import requests
 import urllib.parse
 from geopy.geocoders import Nominatim
+from django.contrib.auth.models import Group
 
 
 def get_location(street_addr, city, province, country):
@@ -121,8 +122,12 @@ def register_user(request):
 
             if isLocation != 0:
                 user = User.objects.create_user(username=username, password=password, email=email, first_name=first_name,
-                                                last_name=last_name)
+                                                last_name=last_name, is_staff=True)
                 user.save()
+
+                group = Group.objects.get(name="normal_users")
+                group.user_set.add(user)
+
                 user_info = User_Info(user_fk=user, street_address=street_address, city=city, province=province,
                                       country=country, phone=phone)
                 user_info.save()
