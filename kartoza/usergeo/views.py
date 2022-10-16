@@ -59,22 +59,23 @@ def get_users(request):
                 country=info_obj.country,
             )
 
-            new_dict = {
-                "user_id": user.id,
-                "first_name": user.first_name,
-                "last_name": user.last_name,
-                "username": user.username,
-                "email": user.email,
-                "phone": info_obj.phone,
-                "street_address": info_obj.street_address,
-                "city": info_obj.city,
-                "province": info_obj.province,
-                "country": info_obj.country,
-                "lat": location["lat"],
-                "lon": location["lon"]
-            }
-            user_list.append(new_dict)
-        context = {'users': user_list}
+            if location != 0:
+                new_dict = {
+                    "user_id": user.id,
+                    "first_name": user.first_name,
+                    "last_name": user.last_name,
+                    "username": user.username,
+                    "email": user.email,
+                    "phone": info_obj.phone,
+                    "street_address": info_obj.street_address,
+                    "city": info_obj.city,
+                    "province": info_obj.province,
+                    "country": info_obj.country,
+                    "lat": location["lat"],
+                    "lon": location["lon"]
+                }
+                user_list.append(new_dict)
+            context = {'users': user_list}
         return JsonResponse(context, status=200)
     return JsonResponse({}, status=200)
 
