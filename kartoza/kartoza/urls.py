@@ -21,4 +21,3 @@ urlpatterns = [
     path('', include(('usergeo.urls', "usergeo"), namespace="usergeo")),
 ]
 
-admin.site.index_title = "USERGEO"
