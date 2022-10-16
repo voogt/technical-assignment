@@ -20,3 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(('usergeo.urls', "usergeo"), namespace="usergeo")),
 ]
+
+admin.site.index_title = "USERGEO"

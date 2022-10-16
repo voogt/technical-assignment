@@ -1,0 +1,33 @@
+{% extends 'usergeo/base.html' %}
+
+{% block content %}
+
+<h2>Profile</h2>
+
+<hr>
+<br>
+
+<h4>Basic info:</h4>
+<ul>
+    <li> First Name: {{ user_basic_obj.first_name }}</li>
+    <li> Last Name: {{ user_basic_obj.last_name }}</li>
+    <li> Username: {{ user_basic_obj.username }} </li>
+    <li> Email: {{ user_basic_obj.email }}</li>
+</ul>
+
+
+<h4>Location info:</h4>
+<ul>
+    <li> Phone: {{ user_info_obj.phone }}</li>
+    <li> Street Address: {{ user_info_obj.street_address }}</li>
+    <li> City: {{ user_info_obj.city }}</li>
+    <li> Province: {{ user_info_obj.province }}</li>
+    <li> Country: {{ user_info_obj.country }}</li>
+</ul>
+
+<br><br>
+
+<a class="btn btn-secondary" href="{% url 'usergeo:edit_profile' %}"> Edit Profile</a>
+
+
+{% endblock %}

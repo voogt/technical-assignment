@@ -8,8 +8,20 @@ class User_Activity(models.Model):
     log_time = models.DateTimeField(max_length=250)
     status = models.CharField(max_length=250)
 
+    def first_name(self):
+        return f"{self.user_fk.first_name}"
+
+    def last_name(self):
+        return f"{self.user_fk.last_name}"
+
+    def username(self):
+        return f"{self.user_fk.username}"
+
     def __str__(self):
         return f"{self.user_fk.first_name} {self.user_fk.last_name}"
+
+    class Meta:
+        verbose_name_plural = "User Login Activity"
 
 
 class User_Info(models.Model):
@@ -28,6 +40,9 @@ class User_Info(models.Model):
 
     def __str__(self):
         return f"{self.user_fk.first_name} {self.user_fk.last_name}"
+
+    class Meta:
+        verbose_name_plural = "User Location Activity"
 
 
 

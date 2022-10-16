@@ -142,6 +142,14 @@ def register_user(request):
 
 
 @login_required
+def view_profile(request):
+    user_basic_obj = User.objects.get(pk=request.user.id)
+    user_info_obj = User_Info.objects.get(user_fk=request.user.id)
+    context = {"user_basic_obj": user_basic_obj, "user_info_obj": user_info_obj}
+    return render(request, 'usergeo/profile.html', context)
+
+
+@login_required
 def edit_profile(request):
     user_info_obj = User_Info.objects.get(user_fk=request.user.id)
     form_basic = EditProfileForm(instance=request.user)
@@ -157,9 +165,6 @@ def edit_basic(request):
             form.save()
             messages.success(request, "Profile Updated!")
             return redirect('usergeo:edit_profile')
-    else:
-        messages.success(request, "Profile Updated!")
-        return redirect('usergeo:edit_profile')
     return redirect('usergeo:edit_profile')
 
 
@@ -171,8 +176,6 @@ def edit_info(request):
             form.save()
             messages.success(request, "Profile Updated!")
             return redirect('usergeo:edit_profile')
-    else:
-        return redirect('usergeo:edit_profile')
     return redirect('usergeo:edit_profile')
 
 
