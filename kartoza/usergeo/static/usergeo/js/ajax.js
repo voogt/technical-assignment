@@ -17,7 +17,7 @@ $.ajax({
             iconSize: [40, 40]
         });
 
-        for(var x = 0; x <= count; x++){
+        for(var x = 0; x < count; x++){
             var marker = L.marker(
                 [response["users"][x]["lat"], response["users"][x]["lon"]],
                 {icon: myIcon}
@@ -32,7 +32,6 @@ $.ajax({
             html = "<p>User Profile</p><ul> <li>Name: "+ first_name +" "+ last_name +"</li> <li>Email: "+ email +"</li> <li>Phone: "+ phone +"</li> <li>Address: "+ street_addr +" "+ city +"</li>  </ul>";
             marker.bindPopup(html);
         }
-
     },
     error: function (response){
         alert("error")
